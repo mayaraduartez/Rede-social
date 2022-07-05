@@ -23,6 +23,9 @@ module.exports = {
       idusuario:{
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: "usuarios", key:"id"},//chave estrangeira, o id
+        onUpdate: "CASCADE", //se eu alterar o pai o filho altera
+        onDelete: "CASCADE", // se eu apagar o pai o filho apaga
       },
     });
   },
