@@ -28,6 +28,10 @@ app.use(passport.authenticate("session"));
 
 app.use("/", loginRoute);
 
+app.get('/galeria', function (req, res) {
+  res.render("principal/galeria");
+});
+
 app.listen(porta, function () {
   console.log("Servidor funcionando!");
 });

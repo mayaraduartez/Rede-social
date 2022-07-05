@@ -27,4 +27,4 @@ async function cadastro(req, res) {
   res.redirect("/");
 }
 
-module.exports = { abreTela, logar, cadastro }; //exporta as funções
+module.exports = { abreTela, logar, cadastro}; //exporta as funções
