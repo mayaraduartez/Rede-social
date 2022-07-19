@@ -3,14 +3,23 @@ const app = express();
 const path = require("path");
 const porta = process.env.PORT || 3000;
 var session = require("express-session");
-const passport = require("passport");
+var passport = require("passport");
 
 const loginRoute = require("./routes/loginRoute");
+const principalRoute = require("./routes/principalRoute");
+
+const Foto = require("./models/Foto");
+const Usuario = require("./models/Usuario");
+const Postagem = require("./models/Postagem");
+Foto.belongsTo(Usuario);
+Usuario.hasMany(Foto);
+Postagem.belongsTo(Usuario);
+Usuario.hasMany(Postagem);
 
 //configuração dos arquivos de visão (VIEWS)
 app.set("view engine", "ejs");
 
-//configura para receber dados por metodo post
+//configurar para receber dados por metodo post
 app.use(express.urlencoded({ extended: false }));
 
 //pasta de arquivos estáticos
@@ -28,8 +37,18 @@ app.use(passport.authenticate("session"));
 
 app.use("/", loginRoute);
 
-app.get('/galeria', function (req, res) {
-  res.render("principal/galeria");
+app.use("/", principalRoute);
+
+app.get("/teste", async function (req, res) {
+  const foto = await Foto.create({
+    nome: "oi.jpg",
+    descricao: "Oi",
+    data: new Date(),
+    UsuarioId: 1,
+  }).catch((err) => {
+    console.log(err);
+  });
+  console.log(foto);
 });
 
 app.listen(porta, function () {

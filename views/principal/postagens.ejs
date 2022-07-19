@@ -1,0 +1,60 @@
+<%-include('./cabecalho.ejs')%>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Minhas postagens</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Minhas postagens</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Postagens recentes</h2>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="dashboard-widget-content">
+                                        <ul class="list-unstyled timeline widget">
+                                            <!--INICIO POSTAGEM-->
+                                            <%Postagens.forEach(function(postagem){%>
+                                            <li>
+                                                <div class="block">
+                                                    <div class="block_content">
+                                                        <h2 class="title">
+                                                            <a><%=postagem.titulo%></a>
+                                                        </h2>
+                                                        <div class="byline">
+                                                            <span><%=postagem.data%></span> por <a><%=postagem.Usuario.nome%></a>
+                                                        </div>
+                                                        <p class="excerpt"><%=postagem.descricao%></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <% }) %>
+                                            <!--FIM POSTAGEM-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+<%-include('./rodape.ejs')%>

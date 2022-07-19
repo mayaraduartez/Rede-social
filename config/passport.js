@@ -9,7 +9,7 @@ passport.use(
     var usuario = await Usuario.findOne({ where: { email: username } });
     //verificando se o usuario está do bd, com o find
     if (!usuario) {
-      return cb(null.false, { message: "Usuario não existe!" }); //não teve resultado
+      return cb(null,false, { message: "Usuario não existe!" }); //não teve resultado
     } else {
       //2º teste pra achar o usuario, pra ver se a senha está errada
       if (!bcrypt.compareSync(password, usuario.senha)) {
@@ -23,7 +23,7 @@ passport.use(
 
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
-    cb(null, { id: user.id, username: user.email });
+    cb(null, { id: user.id, email: user.email, nome: user.nome });
   });
 });
 

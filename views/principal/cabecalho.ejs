@@ -1,87 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>RedeSocial IFSul | </title>
+  <title>RedeSocial IFSul | </title>
 
-    <!-- Bootstrap -->
-    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
-    
-    <!-- Custom styling plus plugins -->
-    <link href="/build/css/custom.min.css" rel="stylesheet">
-  </head>
+  <!-- Bootstrap -->
+  <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- bootstrap-datetimepicker -->
+  <link href="/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+  <!-- Ion.RangeSlider -->
+  <link href="/vendors/normalize-css/normalize.css" rel="stylesheet">
+  <link href="/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+  <link href="/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+  <!-- Bootstrap Colorpicker -->
+  <link href="/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
 
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="/galeria" class="site_title"><i class="fa fa-paw"></i> <span>RedeSocial IFSul!</span></a>
+  <link href="/vendors/cropper/dist/cropper.min.css" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="/build/css/custom.min.css" rel="stylesheet">
+
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="/galeria" class="site_title"><i class="fa fa-paw"></i> <span>RedeSocial IFSul!</span></a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="/images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="/images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Bem-Vindo,</span>
-                <h2>Mayara Duarte</h2>
-              </div>
+            <div class="profile_info">
+              <span>Bem-Vindo,</span>
+              <h2><%=Usuario.nome%></h2>
             </div>
-            <!-- /menu profile quick info -->
+          </div>
+          <!-- /menu profile quick info -->
 
-            <br />
+          <br />
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>Geral</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-users"></i> Amigos <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/buscaramigos">Buscar amigos</a></li>
-                      <li><a href="/listaramigos">Listar amigos</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-edit"></i> Fotos <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/postarfotos">Postar fotos</a></li>
-                      <li><a href="/visualizarfotos">Visualizar fotos</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-desktop"></i> Comunidades <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/buscarcomunidades">Buscar Comunidades</a></li>
-                      <li><a href="/minhascomunidades">Minhas Comunidades</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-table"></i> Postagens <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/postar">Postar</a></li>
-                      <li><a href="/minhaspostagens">Minhas Postagens</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>Geral</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-users"></i> Amigos <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/buscaramigos">Buscar amigos</a></li>
+                    <li><a href="/listaramigos">Listar amigos</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-edit"></i> Fotos <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/postarfotos">Postar fotos</a></li>
+                    <li><a href="/galeria">Visualizar fotos</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-desktop"></i> Comunidades <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/buscarcomunidade">Buscar Comunidades</a></li>
+                    <li><a href="/minhascomunidades">Minhas Comunidades</a></li>
+                    <li><a href="/criarcomunidade">Criar Comunidade</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-table"></i> Postagens <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/postagem">Postar</a></li>
+                    <li><a href="/postagens">Minhas Postagens</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
-            <!-- /sidebar menu -->
+          </div>
+          <!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
-            <!--<div class="sidebar-footer hidden-small">
+          <!-- /menu footer buttons -->
+          <!--<div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -95,31 +109,32 @@
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>-->
-            <!-- /menu footer buttons -->
-          </div>
+          <!-- /menu footer buttons -->
         </div>
+      </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <div class="nav toggle">
-                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                </div>
-                <nav class="nav navbar-nav">
-                <ul class=" navbar-right">
-                  <li class="nav-item dropdown open" style="padding-left: 15px;">
-                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="/images/img.jpg" alt="">Mayara Duarte
-                    </a>
-                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="/perfil"> Profile</a>
-                        
-                    
-                      <a class="dropdown-item"  href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                    </div>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
           </div>
-        <!-- /top navigation -->
+          <nav class="nav navbar-nav">
+            <ul class=" navbar-right">
+              <li class="nav-item dropdown open" style="padding-left: 15px;">
+                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
+                  data-toggle="dropdown" aria-expanded="false">
+                  <img src="/images/img.jpg" alt=""><%=Usuario.nome%>
+                </a>
+                <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/perfil"> Profile</a>
+
+
+                  <a class="dropdown-item" href="/sair"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->

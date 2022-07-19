@@ -1,0 +1,76 @@
+<%-include('./cabecalho.ejs')%>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Criar Comunidade</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Criar Comunidade</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" method="post" enctype="multipart/form-data" data-parsley-validate
+                            class="form-horizontal form-label-left">
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Preview
+
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <img class="img-circle img-fluid" id="blah" src="#" alt="your image"
+                                        style="max-width: 100%;" hidden />
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Foto
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input type="file" id="fotoupload" class="form-control-file" required="required"
+                                        name="foto">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nome
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input type="text" class="form-control" required="required" name="nome"></input>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Descrição
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <textarea style="min-width:100%" required="required" name="descricao"></textarea>
+                                </div>
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <input type="reset" class="btn btn-primary" type="reset" value="Limpar">
+                                    <input type="submit" class="btn btn-success" value="Enviar">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+<%-include('./rodape.ejs')%>

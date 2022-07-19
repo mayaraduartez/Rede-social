@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.DATEONLY, //apenas data
         defaultValue: Sequelize.NOW, //vai cadastrar a data de hoje na hr de add a foto do db
       },
-      idusuario:{
+      UsuarioId:{
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {model: "usuarios", key:"id"},//chave estrangeira, o id
