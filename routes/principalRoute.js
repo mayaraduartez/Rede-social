@@ -51,6 +51,13 @@ router.post(
   principalController.salvarpostagem
 );
 
+router.post(
+  "/criarcomunidade",
+  autenticacao,
+  upload.single("foto"),
+  principalController.salvarcomunidade
+);
+
 router.get("/sair", autenticacao, principalController.sair);
 
 module.exports = router;

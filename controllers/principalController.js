@@ -1,5 +1,6 @@
 const Foto = require("../models/Foto");
 const Postagem = require("../models/Postagem");
+const Comunidade = require("../models/Comunidade");
 
 async function abregaleria(req, res) {
   const fotos = await Foto.findAll({
@@ -39,16 +40,23 @@ async function buscaramigos(req, res) {
   res.render("principal/buscaramigos",{Usuario: req.user});
 }
 
+async function criarcomunidade(req, res) {
+  res.render("principal/criarcomunidade",{Usuario: req.user});
+}
+
 async function buscarcomunidade(req, res) {
   res.render("principal/buscarcomunidade",{Usuario: req.user});
 }
 
 async function minhascomunidades(req, res) {
-  res.render("principal/minhascomunidades",{Usuario: req.user});
-}
-
-async function criarcomunidade(req, res) {
-  res.render("principal/criarcomunidade",{Usuario: req.user});
+    const comunidades = await Comunidade.findAll({
+      where: {
+        UsuarioId: req.user.id,
+      }, include: 'Usuario'
+    }).catch(function (err) {
+      console.log(err)
+    });
+    res.render("principal/minhascomunidades" , {Comunidades: comunidades, Usuario: req.user});
 }
 
 async function salvarfoto(req, res) {
@@ -73,6 +81,21 @@ async function salvarpostagem(req, res) {
   res.redirect("/postagens");
 };
 
+async function salvarcomunidade(req, res){
+
+  console.log('está na comunidade')
+  const comunidade = await Comunidade.create({
+    foto: req.file.filename,
+    nome: req.body.nome,
+    descricao: req.body.descricao,
+    UsuarioId: req.user.id,
+  }).catch(err=>{
+    console.log(err)
+  });
+  console.log('criou comunidade');
+  res.redirect("/minhascomunidades");
+};
+
 async function sair(req, res) {
   req.logout(function(err){
     if(err){
@@ -95,4 +118,5 @@ module.exports = {
   salvarfoto,
   sair,
   salvarpostagem,
+  salvarcomunidade,
 };
