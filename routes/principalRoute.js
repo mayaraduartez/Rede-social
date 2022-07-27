@@ -58,6 +58,12 @@ router.post(
   principalController.salvarcomunidade
 );
 
+router.post(
+  "/minhascomunidades",
+  autenticacao,
+  principalController.buscarcomunidade
+);
+
 router.get("/sair", autenticacao, principalController.sair);
 
 module.exports = router;

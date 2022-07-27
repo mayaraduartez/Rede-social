@@ -45,8 +45,14 @@ async function criarcomunidade(req, res) {
 }
 
 async function buscarcomunidade(req, res) {
-  res.render("principal/buscarcomunidade",{Usuario: req.user});
-}
+      Comunidade.find({ nome: new RegExp(req.body.pesquisar, "i") }).then(function (
+        docs
+      ) {
+        res.render("minhascomunidades.ejs", { Comunidade: docs });
+      });
+      res.render("principal/minhascomunidade",{Comunidade: req.user});
+} 
+
 
 async function minhascomunidades(req, res) {
     const comunidades = await Comunidade.findAll({
@@ -82,8 +88,6 @@ async function salvarpostagem(req, res) {
 };
 
 async function salvarcomunidade(req, res){
-
-  console.log('está na comunidade')
   const comunidade = await Comunidade.create({
     foto: req.file.filename,
     nome: req.body.nome,
@@ -92,7 +96,6 @@ async function salvarcomunidade(req, res){
   }).catch(err=>{
     console.log(err)
   });
-  console.log('criou comunidade');
   res.redirect("/minhascomunidades");
 };
 
