@@ -1,6 +1,7 @@
 const Foto = require("../models/Foto");
 const Postagem = require("../models/Postagem");
 const Comunidade = require("../models/Comunidade");
+const { Op } = require("sequelize")
 
 async function abregaleria(req, res) {
   const fotos = await Foto.findAll({
@@ -44,13 +45,14 @@ async function criarcomunidade(req, res) {
   res.render("principal/criarcomunidade",{Usuario: req.user});
 }
 
-async function buscarcomunidade(req, res) {
-      Comunidade.find({ nome: new RegExp(req.body.pesquisar, "i") }).then(function (
+
+async function minhascomunidadesbuscar(req, res) {
+  console.log(req.body)
+      Comunidade.findAll({where:{ nome:{[Op.iLike]:"%"+req.body.pesquisar+"%"}}}).then(function (
         docs
-      ) {
-        res.render("minhascomunidades.ejs", { Comunidade: docs });
+      ) { console.log(docs);
+        res.render("principal/minhascomunidades.ejs", { Comunidades: docs, Usuario: req.user });
       });
-      res.render("principal/minhascomunidade",{Comunidade: req.user});
 } 
 
 
@@ -115,7 +117,7 @@ module.exports = {
   listaramigos,
   postagem,
   buscaramigos,
-  buscarcomunidade,
+  minhascomunidadesbuscar,
   minhascomunidades,
   criarcomunidade,
   salvarfoto,

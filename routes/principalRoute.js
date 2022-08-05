@@ -20,10 +20,10 @@ router.get("/listaramigos", autenticacao, principalController.listaramigos);
 
 router.get("/buscaramigos", autenticacao, principalController.buscaramigos);
 
-router.get(
-  "/buscarcomunidade",
+router.post(
+  "/minhascomunidadesbuscar",
   autenticacao,
-  principalController.buscarcomunidade
+  principalController.minhascomunidadesbuscar
 );
 
 router.get(
@@ -31,6 +31,7 @@ router.get(
   autenticacao,
   principalController.minhascomunidades
 );
+
 
 router.get(
   "/criarcomunidade",
@@ -61,8 +62,12 @@ router.post(
 router.post(
   "/minhascomunidades",
   autenticacao,
-  principalController.buscarcomunidade
+  principalController.minhascomunidades
 );
+
+
+
+
 
 router.get("/sair", autenticacao, principalController.sair);
 
