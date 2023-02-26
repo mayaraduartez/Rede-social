@@ -65,9 +65,17 @@ router.post(
   principalController.minhascomunidades
 );
 
+router.post(
+  "/buscaramigos",
+  autenticacao,
+  principalController.buscaramigosfiltro
+);
 
-
-
+router.get(
+  "/adicionar/:id",
+  autenticacao,
+  principalController.adicionaramigo
+);
 
 router.get("/sair", autenticacao, principalController.sair);
 

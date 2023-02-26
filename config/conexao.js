@@ -1,12 +1,12 @@
 const sequelize = require("sequelize");
 
 const conexao = new sequelize(
-  "redesocial_development",
+  "database_development",
   "postgres",
   "postgres",
   {
     host: "localhost",
-    port: "5433",
+    port: "5432",
     dialect: "postgres",
   }
 );

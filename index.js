@@ -12,6 +12,7 @@ const Foto = require("./models/Foto");
 const Usuario = require("./models/Usuario");
 const Postagem = require("./models/Postagem");
 const Comunidade = require("./models/Comunidade");
+const Amigo = require("./models/Amigo");
 
 Foto.belongsTo(Usuario);
 Usuario.hasMany(Foto);
@@ -21,6 +22,19 @@ Usuario.hasMany(Postagem);
 
 Comunidade.belongsTo(Usuario);
 Usuario.hasMany(Comunidade);
+
+//gera relação N para N
+Usuario.belongsToMany(Usuario, {
+  as: "solicitante", //nome que será chamado o relacionamento
+  foreignKey: "idsolicitante", //nome do campo na tabela da db
+  through: Amigo, //modelo que será responsavel pelo relacionamento
+});
+
+Usuario.belongsToMany(Usuario, {
+  as: "solicitado", 
+  foreignKey: "idsolicitado",
+  through: Amigo,
+});
 
 //configuração dos arquivos de visão (VIEWS)
 app.set("view engine", "ejs");

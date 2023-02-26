@@ -1,7 +1,9 @@
 const Foto = require("../models/Foto");
 const Postagem = require("../models/Postagem");
 const Comunidade = require("../models/Comunidade");
-const { Op } = require("sequelize")
+const Usuario = require("../models/Usuario");
+const Amigo = require("../models/Amigo");
+const { Op } = require("sequelize");
 
 async function abregaleria(req, res) {
   const fotos = await Foto.findAll({
@@ -38,8 +40,37 @@ async function listaramigos(req, res) {
 }
 
 async function buscaramigos(req, res) {
-  res.render("principal/buscaramigos",{Usuario: req.user});
+  const amigos = await Amigo.findAll({
+    where: {
+      [Op.or]: [{ idsolicitado: req.user.id}, { idsolicitante: req.user.id}],
+    },
+  });
+  const usuarios = await Usuario.findAll({
+    where: {
+      [Op.not]: [{ id: req.user.id}],
+    },
+  });
+
+  res.render("principal/buscaramigos",{Usuarios: usuarios , Solicitados: amigos, });
 }
+
+async function buscaramigosfiltro(req, res) {
+  const amigos = await Amigo.findAll({
+    where: {
+      [Op.or]: [{ idsolicitado: req.user.id}, { idsolicitante: req.user.id}],
+    }, //busca todas as solicitações de amizade do usuário logado
+  });
+  const usuarios = await Usuario.findAll({
+    where: {
+      [Op.not]: [{ id: req.user.id}],//não quero o meu user na lista
+      nome: {
+        [Op.iLike]: "%" + req.body.pesquisar + "%",
+      },
+    },
+  });
+  res.render("principal/buscaramigos",{Usuarios: usuarios, Solicitados: amigos,});
+}
+
 
 async function criarcomunidade(req, res) {
   res.render("principal/criarcomunidade",{Usuario: req.user});
@@ -101,6 +132,19 @@ async function salvarcomunidade(req, res){
   res.redirect("/minhascomunidades");
 };
 
+async function adicionaramigo(req, res){
+  const usuarios = await Usuario.findByPk(req.user.id);
+  const amigo = await Usuario.findByPk(req.params.id);
+  await usuarios.addSolicitante(amigo, {
+    through: {
+      datasolicitacao: new Date(),
+      dataaceito: new Date(),
+      situacao: "P",
+    },
+  });
+  res.redirect("/buscaramigos");
+};
+
 async function sair(req, res) {
   req.logout(function(err){
     if(err){
@@ -117,6 +161,7 @@ module.exports = {
   listaramigos,
   postagem,
   buscaramigos,
+  buscaramigosfiltro,
   minhascomunidadesbuscar,
   minhascomunidades,
   criarcomunidade,
@@ -124,4 +169,5 @@ module.exports = {
   sair,
   salvarpostagem,
   salvarcomunidade,
+  adicionaramigo,
 };
